@@ -43,6 +43,7 @@ class UserModel implements JsonSerializable {
             // get the user info from github
             $res = $this->_client->request('GET', "https://api.github.com/users/$username",
                 [
+                    'verify' => false,
                     'headers' => [
                         'User-Agent' => 'request',
                         'Authorization' => 'Bearer ' . $this->_token
@@ -81,6 +82,7 @@ class UserModel implements JsonSerializable {
                 // get current page of user repositories
                 $res = $this->_client->request('GET', $this->_reposUrl . "?per_page=100&page=$page",
                     [
+                        'verify' => false,
                         'headers' => [
                             'User-Agent' => 'request',
                             'Authorization' => 'Bearer ' . $this->_token,
@@ -143,6 +145,7 @@ class UserModel implements JsonSerializable {
         // get language stats for repo
         $res = $this->_client->request('GET', $url,
             [
+                'verify' => false,
                 'headers' => [
                     'User-Agent' => 'request',
                     'Authorization' => 'Bearer ' . $this->_token
